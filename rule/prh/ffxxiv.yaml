@@ -1,0 +1,36 @@
+version: 1
+rules:
+  - expected: ハウケタ
+    patterns: ハウタケ
+    spec:
+      - from: ハウタケ御用邸
+        to: ハウケタ御用邸
+  - expected: ブレイフロクス
+    patterns:
+      - ブレイクロクス
+      - ブレイククロス
+      - ブレイクロフス
+      - ブレイフクロス
+    spec:
+      - from: ブレイクフロスの野営地
+        to: ブレイフロクスの野営地
+  - expected: ギサール
+    patterns: ギザール
+  - expected: レヴナンツトール
+    patterns:
+      - レブナントツール
+      - レブナンツトール
+  - expected: トームストーン
+    patterns:
+      - トゥームストーン
+      - トムーンストーン
+  - expected: ウリエンジェ
+    patterns: ウリエンジュ
+  - expected: グリットスタンス
+    patterns: グリッドスタンス
+  - expected: ザナラーン
+    patterns: ザラナーン
+  - expected: アバラシア
+    patterns: アラバシア
+  - expected: リドロー
+    patterns: リロドー

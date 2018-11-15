@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "ja-no-successive-word": true,
+    "ja-unnatural-alphabet": true,
+    "max-kanji-continuous-len": true,
+    "no-doubled-conjunctive-particle-ga": true,
+    "no-doubled-conjunction": true,
+    "no-double-negative-ja": true,
+    "no-doubled-joshi": {
+      "min_interval": 1
+    },
+    "no-dropping-the-ra": true,
+    "no-hankaku-kana": true,
+    "no-mixed-zenkaku-and-hankaku-alphabet": true,
+    "sentence-length": {
+      "max": 100
+    },
+    "no-start-duplicated-conjunction": {
+      "interval": 2
+    },
+    "no-mix-dearu-desumasu": {
+      "preferInHeader": "である",
+      "preferInBody": "ですます",
+      "preferInList": "である",
+      "strict": true
+    },
+    "prh": {
+      "rulePaths": [
+        "rule/prh/ffxxiv.yaml"
+      ]
+    },
+    "ja-no-mixed-period": {
+      "forceAppendPeriod": true
+    }
+  }
+}

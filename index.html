@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/reveal.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/black.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/lib/css/zenburn.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/lib/js/head.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/js/reveal.min.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        if (document.location.search.length < 1) {
+          return;
+        }
+
+        const orgURL = new URL(document.location.href);
+        const markdownPath = orgURL.searchParams.get("slide");
+        if (!markdownPath){
+          return;
+        }
+
+        document.getElementById("slide").dataset.markdown = markdownPath;
+        Reveal.initialize({
+          dependencies: [
+          {src: "//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/marked.js" },
+          {src: "//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/markdown.min.js" },
+          {src: "//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/notes/notes.min.js", async: true },
+          ]
+        }, false);
+
+        Reveal.addEventListener("ready", (event) => {
+          document.title = document.getElementsByTagName("h1")[0].innerText;
+          const url = `//${orgURL.hostname}${orgURL.pathname}`;
+          const mainPath = url.substring(0,url.lastIndexOf("/"));
+          const markdownDirPath = markdownPath.substring(0, markdownPath.lastIndexOf("/"));
+
+          Array.from(document.getElementsByTagName("img"), el => {
+            const imagePath = el.getAttribute("src");
+            if (imagePath.match(/^(?:https?)?\/\//)){
+              return;
+            }
+            const relativePath = imagePath.split(mainPath)[1];
+            if (!relativePath) {
+              // another domain and absolute path case
+              return;
+            }
+            const result = relativePath ? markdownDirPath + relativePath : markdownDirPath + "/" + imagePath;
+            el.setAttribute("src",result);
+          });
+        });
+      });
+    </script>
+    <style>
+      #list{
+        color: #FFF;
+      }
+    </style>
+    <title>FFXIV FreeCompany Proposal</title>
+  </head>
+  <body>
+    <lu id="list">
+      <li><a href="?slide=/md/gui.md">GUI</a></li>
+    </lu>
+    <div class="reveal">
+      <div class="slides" id="slides">
+        <section data-separator="^\r?\n---\r?\n$" data-separator-vertical="^\r?\n>>>\r?\n$" id="slide" />
+      </div>
+    </div>
+  </body>
+</html>
